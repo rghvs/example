@@ -1,0 +1,8 @@
+platform: x86
+configuration: Debug
+build_script:
+ - mkdir build
+ - cd build
+ - cmake .. %CMAKE_CONFIGURE_FLAGS% 
+ - cmake --build . %CMAKE_BUILD_FLAGS%
+ - cd ..
