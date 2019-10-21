@@ -1,6 +1,6 @@
   language: c
   script: 
-    - cl lab2.c
+    - gcc lab2.c
     - mkdir build
     - cd build
     - cmake .. -DCMAKE_BUILD_TYPE=$BUILD_CONFIGURATION -DTARGET_CPU=$TARGET_CPU
