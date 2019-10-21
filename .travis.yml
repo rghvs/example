@@ -1,0 +1,33 @@
+  language: c
+  script: 
+    - cl lab2.c
+    - mkdir build
+    - cd build
+    - cmake .. -DCMAKE_BUILD_TYPE=$BUILD_CONFIGURATION -DTARGET_CPU=$TARGET_CPU
+    - cmake --build .
+matrix:
+  include:
+  # g++ builds
+  - os: linux
+    addons:
+      apt:
+        sources:
+        - ubuntu-toolchain-r-test
+        packages:
+        - g++-6
+    env:
+    - COMPILER="g++-6"  
+    install: export CXX = "g ++ - 6" 
+deploy:
+    provider: releases # выкладываем на GitHub Releases
+    auth_token:
+        secure: encrypted-github-token # токен, зашифрованный с помощью `travis encrypt`
+file:
+# список артефактов
+- file1.pkg
+- file2.pkg
+- ...
+skip_cleanup: true # не удалять сгенерированные во время сборки файлы перед
+развёртыванием
+on:
+tags: true # выполнять deploy только для tagged-commit
